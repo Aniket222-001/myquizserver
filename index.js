@@ -86,7 +86,7 @@ app.get('/profile', (req, res) => {
   });
 app.get('/',(req,res)=>{
     res.json('server in working nicely')
-}
+})
         
 app.listen(4001,(req,res)=>{
     console.log('server is running')
