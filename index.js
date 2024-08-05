@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:3000', // Your frontend URL
+    origin: 'https://myquizbrainstorm.vercel.app', // Your frontend URL
     credentials: true
 }));
 app.use(express.json())
@@ -50,7 +50,7 @@ app.post('/login',async(req,res)=>{
                     res.cookie('token',token,{
                         httpOnly:true,
                         secure:false,
-                        // sameSite: 'None',//without this after deployment cookie was not working properly
+                        sameSite: 'None',//without this after deployment cookie was not working properly
                         path: '/',
                         maxAge: 4 * 60 * 60 * 1000
                     }).json(userdoc)
