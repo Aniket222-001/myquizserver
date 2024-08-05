@@ -49,7 +49,7 @@ app.post('/login',async(req,res)=>{
                     if(err)throw err;
                     res.cookie('token',token,{
                         httpOnly:true,
-                        secure:false,
+                        secure:true,
                         sameSite: 'None',//without this after deployment cookie was not working properly
                         path: '/',
                         maxAge: 4 * 60 * 60 * 1000
