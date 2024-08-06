@@ -17,7 +17,7 @@ app.use(cookieParser())
 
 const jwtSecret = "jnvsnsnfgvjs"
 
-mongoose.connect('mongodb+srv://bloguser:bloguser@cluster0.pzyg7m3.mongodb.net/Blogdata').then(
+mongoose.connect(process.env.MONGO_URL).then(
     console.log('conneected successfully to db')
 ).catch((e)=>{
     console.log('failed to connect ot db')
