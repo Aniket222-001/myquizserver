@@ -8,10 +8,29 @@ const cookieParser = require('cookie-parser');
 const Score = require('./Schema/ScoreSchema');
 
 const app = express();
+// app.use(cors({
+//     origin: 'https://myquizbrainstorm.vercel.app', // Your frontend URL
+//     credentials: true
+// }));
+const allowedOrigins = [
+  'https://myquizbrainstorm.vercel.app',
+  'https://myquiz-tan.vercel.app',
+  // 'http://localhost:3000',
+  // 'https://explore-n-enjoy-5wt3.vercel.app'
+];
+
 app.use(cors({
-    origin: 'https://myquizbrainstorm.vercel.app', // Your frontend URL
-    credentials: true
-}));
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}))
 app.use(express.json())
 app.use(cookieParser())
 
