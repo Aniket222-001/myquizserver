@@ -5,6 +5,7 @@ const User = require('./Schema/User');
 require('dotenv').config()
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const Score = require('./Schema/ScoreSchema');
 
 const app = express();
 app.use(cors({
@@ -84,6 +85,16 @@ app.get('/profile', (req, res) => {
       res.json(null);
     }
   });
+app.get('/scorecards', async (req, res) => {
+    try {
+        // Fetch scorecards data from the database
+        const scorecards = await Score.find();
+        res.json(scorecards);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching scorecards' });
+    }
+});
+
 app.get('/',(req,res)=>{
     res.json('server in working nicely')
 })
