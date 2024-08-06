@@ -15,6 +15,7 @@ const app = express();
 const allowedOrigins = [
   'https://myquizbrainstorm.vercel.app',
   'https://myquiz-tan.vercel.app',
+  'https://quiz-dgt3.vercel.app',
   // 'http://localhost:3000',
   // 'https://explore-n-enjoy-5wt3.vercel.app'
 ];
