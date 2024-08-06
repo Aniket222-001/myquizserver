@@ -85,6 +85,38 @@ app.get('/profile', (req, res) => {
       res.json(null);
     }
   });
+app.post('/postscore',(req,res)=>{
+    const { token } = req.cookies;
+    const {
+        percentage,
+        total_que,
+        wrong_que,
+        correct_que,
+        category,
+        difficulty,
+        type
+    } = req.body
+    if (token) {
+      jwt.verify(token, jwtSecret, {}, async (err, userdata) => {
+        if (err) throw err;
+        const data = await Score.create({
+            owner:userdata.id,
+            percentage,
+            total_que,
+            wrong_que,
+            correct_que,
+            category,
+            difficulty,
+            type
+        })
+        res.json(data)
+      });
+      
+    } else {
+      res.json(null);
+    }
+  })
+
 app.get('/scorecards', async (req, res) => {
     try {
         // Fetch scorecards data from the database
